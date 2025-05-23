@@ -23,7 +23,7 @@ if url:
     try:
         dl_url = get_onedrive_download_url(url)
         file = requests.get(dl_url).content
-        df = pd.read_excel("QLDA-KHVT (21.01.25).xlsx", sheet_name="Bang CT", engine="openpyxl")
+        df = pd.read_excel("QLDA-KHVT (21.01.25).xlsx", sheet_name="Bang CT", engine="openpyxl",header=1)
 
 
         st.success("✅ Đã tải dữ liệu từ sheet 'Bang CT'")
