@@ -21,7 +21,7 @@ if url:
     try:
         dl_url = get_onedrive_download_url(url)
         file = requests.get(dl_url).content
-        df = pd.read_excel(BytesIO(file), sheet_name="Bang CT")
+        df = pd.read_excel(BytesIO(file), sheet_name="Bang CT", engine="openpyxl")
 
         st.success("✅ Đã tải dữ liệu từ sheet 'Bang CT'")
         st.dataframe(df.tail(10))
