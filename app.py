@@ -7,13 +7,15 @@ from io import BytesIO
 def get_onedrive_download_url(shared_url):
     if "1drv.ms" in shared_url:
         r = requests.get(shared_url, allow_redirects=True)
-        return r.url.replace("redir?", "download?")
-    return shared_url
+        return r.url.replace("redir?", "download?").replace("embed?", "download?")
+    elif "onedrive.live.com" in shared_url:
+        return shared_url.replace("redir?", "download?")
+    else:
+        return shared_url
 
 st.set_page_config(page_title="Nhập liệu Excel OneDrive", layout="wide")
 st.title("📋 Ứng dụng nhập liệu cho file Excel từ OneDrive")
 
-# Link mặc định từ người dùng
 default_url = "https://1drv.ms/x/c/ff3d3278bf1e16d9/EbcbAJKFsdtKifzIMel6nUgBb6SO8Z-LSWrYNiTSvVyP-Q?e=Lkp3et"
 url = st.text_input("Nhập liên kết OneDrive chia sẻ (dạng 1drv.ms):", value=default_url)
 
